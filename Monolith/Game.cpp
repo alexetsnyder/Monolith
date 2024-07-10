@@ -8,7 +8,7 @@ namespace Mono
 	Game::Game(const std::string& title, int windowWidth, int windowHeight)
 		: gameState_{ GameState::RUNNING },
 		  window_{ title.c_str(), windowWidth, windowHeight },
-		  shader_{}
+		  shader_{}, line_{}
 	{
 		createShader();
 	}
@@ -81,6 +81,8 @@ namespace Mono
 		window_.ClearBuffer();
 
 		shader_.use();
+
+		line_.draw(shader_);
 
 		window_.SwapBuffer();
 	}

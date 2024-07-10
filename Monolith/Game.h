@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Rendering/Lines.h"
 #include "Rendering/Shader.h"
 #include "System/Windows/Window.h"
 
@@ -31,5 +32,6 @@ namespace Mono
 			GameState gameState_;
 			Sys::Window window_;
 			Shader shader_;
+			Lines line_;
 	};
 }
