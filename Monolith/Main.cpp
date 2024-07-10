@@ -12,7 +12,7 @@ int main(int argc, char** argv)
 {
 	try
 	{
-		Mono::Game game{ "SeaEngine", screenWidth, screenHeight };
+		Mono::Game game{ "Monolith", screenWidth, screenHeight };
 		game.run();
 	}
 	catch (const Mono::Sys::InitException& exception)
