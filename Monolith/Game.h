@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Rendering/Shader.h"
 #include "System/Windows/Window.h"
 
 #include <string>
@@ -29,7 +30,6 @@ namespace Mono
 
 			GameState gameState_;
 			Sys::Window window_;
-			//Shader shader_;
-			//QuadMesh quadMesh_;
+			Shader shader_;
 	};
 }

@@ -136,11 +136,13 @@
     <ClCompile Include="..\third_party\cFiles\glad.c" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Rendering\Shader.cpp" />
     <ClCompile Include="System\Logging\ErrorLog.cpp" />
     <ClCompile Include="System\Windows\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="System\Exceptions\InitException.h" />
     <ClInclude Include="System\Logging\ErrorLog.h" />
     <ClInclude Include="System\Windows\Window.h" />

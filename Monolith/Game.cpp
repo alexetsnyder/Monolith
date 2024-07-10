@@ -1,13 +1,16 @@
 #include "Game.h"
 
+#include "System/Exceptions/InitException.h"
+#include "System/Logging/ErrorLog.h"
+
 namespace Mono
 {
 	Game::Game(const std::string& title, int windowWidth, int windowHeight)
 		: gameState_{ GameState::RUNNING },
-		  window_{ title.c_str(), windowWidth, windowHeight } //,
-		//shader_{}, quadMesh_{}
+		  window_{ title.c_str(), windowWidth, windowHeight },
+		  shader_{}
 	{
-		//createShader();
+		createShader();
 	}
 
 	Game::~Game()
@@ -22,14 +25,14 @@ namespace Mono
 
 	void Game::createShader()
 	{
-		/*if (!shader_.setVertexShader("Rendering/Shaders/basicVertex.glsl") ||
-			!shader_.setFragmentShader("Rendering/Shaders/basicFragment.glsl") ||
+		if (!shader_.setVertexShader("Rendering/Shaders/basic.vert") ||
+			!shader_.setFragmentShader("Rendering/Shaders/basic.frag") ||
 			!shader_.compile() ||
 			!shader_.link())
 		{
 			Sys::ErrorLog::log("Main::CreateShader", "Could not create Shaders");
-			throw Sys::InitException("Shaders Failed.");
-		}*/
+			throw Sys::InitException("Failed to create shader.");
+		}
 	}
 
 	void Game::pollEvents()
@@ -77,9 +80,7 @@ namespace Mono
 	{
 		window_.ClearBuffer();
 
-		//shader_.use();
-
-		//quadMesh_.renderer()->draw(shader_);
+		shader_.use();
 
 		window_.SwapBuffer();
 	}
