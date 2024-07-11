@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Rendering\IRenderer.h" />
     <ClInclude Include="Rendering\Lines.h" />
     <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="System\Exceptions\InitException.h" />

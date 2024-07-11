@@ -4,6 +4,8 @@
 
 #include <glad/glad.h>
 
+#include <vector>
+
 namespace Mono
 {
 	class Lines
@@ -11,6 +13,9 @@ namespace Mono
 		public:
 			Lines();
 			~Lines();
+
+			void createGrid(const std::vector<float>& gridData);
+			void sendGridData(const std::vector<float>& gridData);
 
 			void draw(const Shader& shader) const;
 

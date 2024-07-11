@@ -3,6 +3,9 @@
 #include "System/Exceptions/InitException.h"
 #include "System/Logging/ErrorLog.h"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
 namespace Mono
 {
 	Game::Game(const std::string& title, int windowWidth, int windowHeight)
@@ -81,6 +84,14 @@ namespace Mono
 		window_.ClearBuffer();
 
 		shader_.use();
+
+		glm::mat4 projection{ 1.0f };// glm::ortho(0.0f, 100.0f, 0.0f, 100.0f, 0.1f, 100.0f) };
+		glm::mat4 view{ 1.0f };
+		glm::mat4 model{ 1.0f };
+
+		shader_.setUniform("projection", projection);
+		shader_.setUniform("view", view);
+		shader_.setUniform("model", model);
 
 		line_.draw(shader_);
 

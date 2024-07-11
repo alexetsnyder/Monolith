@@ -1,6 +1,7 @@
 #pragma once
 
 #include <glad/glad.h>
+#include <glm/glm.hpp>
 
 #include <string>
 #include <vector>
@@ -22,6 +23,8 @@ namespace Mono
 			bool link();
 
 			void use() const;
+
+			void setUniform(const std::string& name, const glm::mat4& matrix) const;
 
 		private:
 			bool setShader(const std::string shaderPath, int glShader);

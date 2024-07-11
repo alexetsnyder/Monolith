@@ -2,6 +2,8 @@
 
 #include "System/Logging/ErrorLog.h"
 
+#include <glm/gtc/type_ptr.hpp>
+
 #include <fstream>
 
 namespace Mono
@@ -106,6 +108,12 @@ namespace Mono
 	void Shader::use() const
 	{
 		glUseProgram(programID_);
+	}
+
+	void Shader::setUniform(const std::string& name, const glm::mat4& matrix) const
+	{
+		GLuint mat4Loc = glGetUniformLocation(programID_, name.c_str());
+		glUniformMatrix4fv(mat4Loc, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
 	std::string Shader::readFile(const std::string& filePath)

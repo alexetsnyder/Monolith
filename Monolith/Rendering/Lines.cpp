@@ -1,5 +1,7 @@
 #include "Lines.h"
 
+#include <vector>
+
 namespace Mono
 {
 	float line[6]
@@ -31,6 +33,16 @@ namespace Mono
 	{
 		glDeleteVertexArrays(1, &vao_);
 		glDeleteBuffers(1, &vbo_);
+	}
+
+	void Lines::createGrid(const std::vector<float>& gridData)
+	{
+
+	}
+
+	void Lines::sendGridData(const std::vector<float>& gridData)
+	{
+
 	}
 
 	void Lines::draw(const Shader& shader) const

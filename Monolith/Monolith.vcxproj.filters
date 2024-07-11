@@ -56,6 +56,9 @@
     <ClInclude Include="Rendering\Lines.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Rendering\IRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\third_party\dlls\SDL2.dll" />
