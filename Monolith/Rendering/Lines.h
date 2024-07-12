@@ -14,7 +14,7 @@ namespace Mono
 			Lines();
 			~Lines();
 
-			void createGrid(const std::vector<float>& gridData);
+			void createGrid(std::vector<float>& gridData);
 			void sendGridData(const std::vector<float>& gridData);
 
 			void draw(const Shader& shader) const;
