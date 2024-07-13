@@ -2,12 +2,12 @@
 
 namespace Mono
 {
-	float quadVertexArray[12]
+	float quadVertexArray[20]
 	{
-		 0.5f,  0.5f,  0.0f,	//top right
-		-0.5f,  0.5f,  0.0f,	//top left
-		 0.5f, -0.5f,  0.0f,	//bottom right
-		-0.5f, -0.5f,  0.0f,	//bottom left
+		 0.5f,  0.5f, 0.0f,  1.0f, 0.0f,	//top right
+		-0.5f,  0.5f, 0.0f,  0.0f, 0.0f,	//top left
+		 0.5f, -0.5f, 0.0f,  1.0f, 1.0f,	//bottom right
+		-0.5f, -0.5f, 0.0f,  0.0f, 1.0f,	//bottom left
 	};
 
 	int quadIndexArray[6]
@@ -20,11 +20,11 @@ namespace Mono
 		: meshRenderer_{}
 	{
 		Mesh mesh{};
-		for (int v = 0; v < 12; v += 3)
+		for (int v = 0; v < 20; v += 5)
 		{
 			Vertex vertex{
 				{ quadVertexArray[v], quadVertexArray[v + 1], quadVertexArray[v + 2]},
-				{ 0.0f, 0.0f }
+				{ quadVertexArray[v + 3], quadVertexArray[v + 4] }
 			};
 
 			mesh.addVertex(vertex);

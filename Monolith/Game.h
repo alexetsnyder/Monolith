@@ -4,6 +4,10 @@
 #include "Rendering/Shader.h"
 #include "System/Windows/Window.h"
 
+#include "Rendering/Shapes/Quad.h"
+#include "Rendering/Text/GlyphAtlas.h"
+#include "Rendering/Texture.h"
+
 #include <string>
 
 namespace Mono
@@ -32,6 +36,9 @@ namespace Mono
 			GameState gameState_;
 			Sys::Window window_;
 			Shader shader_;
-			Lines line_;
+			GlyphAtlas atlas_;
+			Texture texture_;
+			Quad quad_;
+			//Lines line_;
 	};
 }

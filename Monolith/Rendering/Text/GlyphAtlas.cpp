@@ -1,12 +1,13 @@
 #include "GlyphAtlas.h"
 
 #include <assert.h>
+#include <iostream>
 
 namespace Mono
 {
-	GlyphAtlas::GlyphAtlas(const std::string& name, const char* filePath, int fontSize)
+	GlyphAtlas::GlyphAtlas(const char* filePath, int fontSize)
 	{
-		addFont(name, filePath, fontSize);
+		addFont(filePath, fontSize);
 	}
 
 	GlyphAtlas::~GlyphAtlas()
@@ -20,10 +21,8 @@ namespace Mono
 		return glyphs_[character];
 	}
 
-	void GlyphAtlas::addFont(const std::string& name, const char* filePath, int fontSize)
+	void GlyphAtlas::addFont(const char* filePath, int fontSize)
 	{
-		name_ = name;
-
 		font_ = TTF_OpenFont(filePath, fontSize);
 		assert(font_ != nullptr);
 

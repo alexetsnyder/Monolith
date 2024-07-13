@@ -4,6 +4,7 @@
 #include "System/Logging/ErrorLog.h"
 
 #include <glad/glad.h>
+#include <SDL/SDL_ttf.h>
 
 namespace Mono::Sys
 {
@@ -75,6 +76,13 @@ namespace Mono::Sys
 			ErrorLog::log("SDL_Init(SDL_INIT_EVERYTHIG)", SDL_GetError());
 			throw InitException("SDL_Init failed");
 		}
+
+		if (TTF_Init() < 0)
+		{
+			ErrorLog::log("TTF_Init()", SDL_GetError());
+			SDL_Quit();
+			throw InitException("TTF_Init failed");
+		}
 	}
 
 	void Window::createWindow(const char* title)
@@ -90,6 +98,7 @@ namespace Mono::Sys
 		if (window_ == nullptr)
 		{
 			ErrorLog::log("SDL_CreateWindow(...)", SDL_GetError());
+			TTF_Quit();
 			SDL_Quit();
 			throw InitException("SDL_CreateWindow failed.");
 		}
@@ -124,6 +133,9 @@ namespace Mono::Sys
 	{
 		glViewport(0, 0, width_, height_);
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	}
 
 	void Window::updateWindowSize()
@@ -135,6 +147,7 @@ namespace Mono::Sys
 	void Window::free()
 	{
 		SDL_DestroyWindow(window_);
+		TTF_Quit();
 		SDL_Quit();
 	}
 }

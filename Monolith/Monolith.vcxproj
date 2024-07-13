@@ -142,6 +142,7 @@
     <ClCompile Include="Rendering\Shader.cpp" />
     <ClCompile Include="Rendering\Shapes\Quad.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
+    <ClCompile Include="Rendering\Text\Font.cpp" />
     <ClCompile Include="Rendering\Text\GlyphAtlas.cpp" />
     <ClCompile Include="System\Logging\ErrorLog.cpp" />
     <ClCompile Include="System\Windows\Window.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="Rendering\Shapes\Quad.h" />
     <ClInclude Include="Rendering\Texture.h" />
+    <ClInclude Include="Rendering\Text\Font.h" />
     <ClInclude Include="Rendering\Text\GlyphAtlas.h" />
     <ClInclude Include="System\Exceptions\InitException.h" />
     <ClInclude Include="System\Logging\ErrorLog.h" />
@@ -169,6 +171,9 @@
     <CopyFileToFolders Include="..\third_party\dlls\SDL2_ttf.dll">
       <FileType>Document</FileType>
     </CopyFileToFolders>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="Assets\Fonts\Px437_IBM_VGA_8x14.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

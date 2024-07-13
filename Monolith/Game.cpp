@@ -11,9 +11,12 @@ namespace Mono
 	Game::Game(const std::string& title, int windowWidth, int windowHeight)
 		: gameState_{ GameState::RUNNING },
 		  window_{ title.c_str(), windowWidth, windowHeight },
-		  shader_{}, line_ {}
+		  shader_{}, atlas_{ "Assets/Fonts/Px437_IBM_VGA_8x14.ttf", 24 }, 
+		  texture_{ 512, 512, TextureSettings{ GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR } }, 
+		  quad_ {}//, line_ {}
 	{
 		createShader();
+		texture_.updateTexture(atlas_.surface());
 	}
 
 	Game::~Game()
@@ -90,12 +93,16 @@ namespace Mono
 		glm::mat4 model{ 1.0f };
 
 		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		model = glm::translate(model, glm::vec3(100.0f, 75.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(150.0f, 150.0f, 0.0f));
 
 		shader_.setUniform("projection", projection);
 		shader_.setUniform("view", view);
 		shader_.setUniform("model", model);
 
-		line_.draw(shader_);
+		//line_.draw(shader_);
+		texture_.bind();
+		quad_.renderer()->draw(shader_);
 
 		window_.SwapBuffer();
 	}
