@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Mesh.h"
 #include "Shader.h"
 
 namespace Mono
@@ -8,7 +9,7 @@ namespace Mono
 	{
 		public:
 			virtual ~IRenderer() {};
-			virtual void sendData() = 0;
+			virtual void sendData(const Mesh& mesh) = 0;
 			virtual void draw(const Shader& shader) const = 0;
 	};
 }

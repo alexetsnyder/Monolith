@@ -11,7 +11,7 @@ namespace Mono
 	Game::Game(const std::string& title, int windowWidth, int windowHeight)
 		: gameState_{ GameState::RUNNING },
 		  window_{ title.c_str(), windowWidth, windowHeight },
-		  shader_{}, line_{}
+		  shader_{}, line_ {}
 	{
 		createShader();
 	}
