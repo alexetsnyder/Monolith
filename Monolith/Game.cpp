@@ -11,12 +11,9 @@ namespace Mono
 	Game::Game(const std::string& title, int windowWidth, int windowHeight)
 		: gameState_{ GameState::RUNNING },
 		  window_{ title.c_str(), windowWidth, windowHeight },
-		  shader_{}, atlas_{ "Assets/Fonts/Px437_IBM_VGA_8x14.ttf", 24 }, 
-		  texture_{ 512, 512, TextureSettings{ GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR } }, 
-		  quad_ {}//, line_ {}
+		  shader_{}, world_{ 528, 396 }//, line_ {} 528, 396
 	{
 		createShader();
-		texture_.updateTexture(atlas_.surface());
 	}
 
 	Game::~Game()
@@ -101,8 +98,7 @@ namespace Mono
 		shader_.setUniform("model", model);
 
 		//line_.draw(shader_);
-		texture_.bind();
-		quad_.renderer()->draw(shader_);
+		world_.draw(shader_);
 
 		window_.SwapBuffer();
 	}

@@ -14,6 +14,8 @@ namespace Mono
 			~World() {};
 			World(const World&) = delete;
 
+			void createWorld();
+
 			void draw(const Shader& shader) const;
 
 		private:
