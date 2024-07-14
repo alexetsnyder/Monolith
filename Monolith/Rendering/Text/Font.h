@@ -9,6 +9,12 @@
 
 namespace Mono
 {
+	class FontName
+	{
+		public:
+			static const std::string Px437_IBM_VGA_8x14;
+	};
+
 	class Font
 	{
 		public:
@@ -16,10 +22,11 @@ namespace Mono
 			~Font() {};
 			Font(const Font&) = delete;
 
-			void draw(const Shader& shader) const;
+			void blitSurface(char c, int x, int y, SDL_Surface* dstSurface);
 
 		private:
 			std::string name_;
+			int fontSize_;
 			GlyphAtlas atlas_;
 	};
 }

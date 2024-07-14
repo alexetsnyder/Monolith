@@ -1,11 +1,10 @@
 #include "GlyphAtlas.h"
 
 #include <assert.h>
-#include <iostream>
 
 namespace Mono
 {
-	GlyphAtlas::GlyphAtlas(const char* filePath, int fontSize)
+	GlyphAtlas::GlyphAtlas(const std::string& filePath, int fontSize)
 	{
 		addFont(filePath, fontSize);
 	}
@@ -16,14 +15,14 @@ namespace Mono
 		SDL_FreeSurface(surface_);
 	}
 
-	SDL_Rect GlyphAtlas::getGlyph(int fontType, int character) const
+	SDL_Rect GlyphAtlas::getGlyph(int character) const
 	{
 		return glyphs_[character];
 	}
 
-	void GlyphAtlas::addFont(const char* filePath, int fontSize)
+	void GlyphAtlas::addFont(const std::string& filePath, int fontSize)
 	{
-		font_ = TTF_OpenFont(filePath, fontSize);
+		font_ = TTF_OpenFont(filePath.c_str(), fontSize);
 		assert(font_ != nullptr);
 
 		surface_ = SDL_CreateRGBSurface(0, FONT_SURFACE_SIZE, FONT_SURFACE_SIZE, 32, 0, 0, 0, 0xff);
