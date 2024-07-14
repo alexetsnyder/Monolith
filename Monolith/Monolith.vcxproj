@@ -146,6 +146,7 @@
     <ClCompile Include="Rendering\Text\GlyphAtlas.cpp" />
     <ClCompile Include="System\Logging\ErrorLog.cpp" />
     <ClCompile Include="System\Windows\Window.cpp" />
+    <ClCompile Include="World\World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
@@ -161,6 +162,7 @@
     <ClInclude Include="System\Exceptions\InitException.h" />
     <ClInclude Include="System\Logging\ErrorLog.h" />
     <ClInclude Include="System\Windows\Window.h" />
+    <ClInclude Include="World\World.h" />
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\third_party\dlls\SDL2.dll">
