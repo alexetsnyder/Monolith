@@ -11,6 +11,7 @@ namespace Mono
 	Game::Game(const std::string& title, int windowWidth, int windowHeight)
 		: gameState_{ GameState::RUNNING },
 		  window_{ title.c_str(), windowWidth, windowHeight },
+		  projection_{ glm::ortho(0.0f, static_cast<float>(window_.width()), 0.0f, static_cast<float>(window_.height())) },
 		  shader_{}, world_{ 528, 396 }//, line_ {} 528, 396
 	{
 		createShader();
@@ -58,6 +59,12 @@ namespace Mono
 						window_.toggleFullScreen();
 					}
 					break;
+				case SDL_WINDOWEVENT:
+					if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED)
+					{
+						projection_ = glm::ortho(0.0f, static_cast<float>(window_.width()), 0.0f, static_cast<float>(window_.height()));
+					}
+					break;
 			}
 		}
 	}
@@ -85,7 +92,6 @@ namespace Mono
 
 		shader_.use();
 
-		glm::mat4 projection{ glm::ortho(0.0f, static_cast<float>(window_.width()), 0.0f, static_cast<float>(window_.height())) };
 		glm::mat4 view{ 1.0f };
 		glm::mat4 model{ 1.0f };
 
@@ -93,7 +99,7 @@ namespace Mono
 		model = glm::translate(model, glm::vec3(512.0f, 384.0f, 0.0f));
 		model = glm::scale(model, glm::vec3(static_cast<float>(window_.width()), static_cast<float>(window_.height()), 0.0f));
 
-		shader_.setUniform("projection", projection);
+		shader_.setUniform("projection", projection_);
 		shader_.setUniform("view", view);
 		shader_.setUniform("model", model);
 

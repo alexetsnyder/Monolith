@@ -32,6 +32,7 @@ namespace Mono
 
 			GameState gameState_;
 			Sys::Window window_;
+			glm::mat4 projection_;
 			Shader shader_;
 			World world_;
 			//Lines line_;
