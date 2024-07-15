@@ -85,13 +85,13 @@ namespace Mono
 
 		shader_.use();
 
-		glm::mat4 projection{ glm::ortho(0.0f, 200.0f, 0.0f, 150.0f, 0.1f, 100.0f) };
+		glm::mat4 projection{ glm::ortho(0.0f, static_cast<float>(window_.width()), 0.0f, static_cast<float>(window_.height())) };
 		glm::mat4 view{ 1.0f };
 		glm::mat4 model{ 1.0f };
 
-		view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		model = glm::translate(model, glm::vec3(100.0f, 75.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(150.0f, 150.0f, 0.0f));
+		//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		model = glm::translate(model, glm::vec3(512.0f, 384.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(static_cast<float>(window_.width()), static_cast<float>(window_.height()), 0.0f));
 
 		shader_.setUniform("projection", projection);
 		shader_.setUniform("view", view);

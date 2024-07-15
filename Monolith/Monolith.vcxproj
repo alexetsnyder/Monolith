@@ -141,6 +141,7 @@
     <ClCompile Include="Rendering\MeshRenderer.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
     <ClCompile Include="Rendering\Shapes\Quad.cpp" />
+    <ClCompile Include="Rendering\Sprite.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
     <ClCompile Include="Rendering\Text\Font.cpp" />
     <ClCompile Include="Rendering\Text\GlyphAtlas.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="Rendering\MeshRenderer.h" />
     <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="Rendering\Shapes\Quad.h" />
+    <ClInclude Include="Rendering\Sprite.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\Text\Font.h" />
     <ClInclude Include="Rendering\Text\GlyphAtlas.h" />

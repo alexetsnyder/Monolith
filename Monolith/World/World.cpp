@@ -15,7 +15,7 @@ namespace Mono
 		SDL_Surface* mapSurface{ SDL_CreateRGBSurface(0, width_, height_, 32, 0, 0, 0, 0xff) };
 		SDL_SetColorKey(mapSurface, SDL_TRUE, SDL_MapRGBA(mapSurface->format, 0, 0, 0, 0));
 
-		for (int i = 0; i < height_; i+=12)
+		for (int i = 0; i < height_; i+=8)
 		{
 			for (int j = 0; j < width_; j+=12)
 			{

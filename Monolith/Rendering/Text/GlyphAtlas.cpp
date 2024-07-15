@@ -1,9 +1,11 @@
-#include "GlyphAtlas.h"
+﻿#include "GlyphAtlas.h"
 
 #include <assert.h>
 
 namespace Mono
 {
+	std::string allChars{ "☺☻♥♦♣♠•◘○◙♂♀♪♫☼►◄↕‼¶§▬↨↑↓→←∟↔▲▼!\"#$ % &'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~⌂ÇüéâäàåçêëèïîìÄÅÉæÆôöòûùÿÖÜ¢£¥₧ƒáíóúñÑªº¿⌐¬½¼¡«»░▒▓│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄▌▐▀αßΓπΣσµτΦΘΩδ∞φε∩≡±≥≤⌠⌡÷≈°∙·√ⁿ²■" };
+
 	GlyphAtlas::GlyphAtlas(const std::string& filePath, int fontSize)
 	{
 		addFont(filePath, fontSize);
@@ -36,8 +38,9 @@ namespace Mono
 			char c[2]
 			{
 				static_cast<char>(i),
+				//allChars[i],
 				'\0',
-			};
+			};	
 
 			SDL_Surface* srcSurface = TTF_RenderUTF8_Blended(font_, c, white);
 

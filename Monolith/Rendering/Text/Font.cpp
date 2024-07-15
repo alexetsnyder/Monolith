@@ -23,5 +23,6 @@ namespace Mono
 		};
 
 		SDL_BlitSurface(atlas_.surface(), &srcRect, dstSurface, &dstRect);
+		
 	}
 }
