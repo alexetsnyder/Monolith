@@ -1,5 +1,7 @@
 #include "Texture.h"
 
+#include <SDL/SDL_image.h>
+
 namespace Mono
 {
 	Texture::Texture(SDL_Surface* surface, TextureSettings settings)
@@ -27,6 +29,21 @@ namespace Mono
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 	}
 
+	Texture::Texture(const std::string& filePath, TextureSettings settings)
+	{
+		glGenTextures(1, &id_);
+		bind();
+
+		setTextureSettings(settings);
+
+		SDL_Surface* imageSurface = loadImage(filePath);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, imageSurface->w, imageSurface->h, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageSurface->pixels);
+		glGenerateMipmap(GL_TEXTURE_2D);
+
+		SDL_FreeSurface(imageSurface);
+	}
+
 	Texture::~Texture()
 	{
 		glDeleteTextures(1, &id_);
@@ -47,6 +64,17 @@ namespace Mono
 	void Texture::bind() const
 	{
 		glBindTexture(GL_TEXTURE_2D, id_);
+	}
+
+	SDL_Surface* Texture::loadImage(const std::string& filePath)
+	{
+		SDL_Surface* srcSurface = IMG_Load(filePath.c_str());
+
+		SDL_Surface* targetSurface = convertSurfaceForOpenGL(srcSurface);
+
+		SDL_FreeSurface(srcSurface);
+
+		return targetSurface;
 	}
 
 	void Texture::setTextureSettings(TextureSettings settings)

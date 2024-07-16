@@ -12,7 +12,9 @@ namespace Mono
 		: gameState_{ GameState::RUNNING },
 		  window_{ title.c_str(), windowWidth, windowHeight },
 		  projection_{ glm::ortho(0.0f, static_cast<float>(window_.width()), 0.0f, static_cast<float>(window_.height())) },
-		  shader_{}, world_{ 528, 396 }//, line_ {} 528, 396
+		  spriteLoader_{ "Assets/Textures/Haowan_Curses_1440x450.png", glm::vec2(288.0f, 288.0f), glm::vec2(18.0f, 18.0f) },
+		  shader_{}, quad_{}
+		  //world_{ 528, 396 }, line_ {} 528, 396
 	{
 		createShader();
 	}
@@ -97,14 +99,14 @@ namespace Mono
 
 		//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
 		model = glm::translate(model, glm::vec3(512.0f, 384.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(static_cast<float>(window_.width()), static_cast<float>(window_.height()), 0.0f));
+		model = glm::scale(model, glm::vec3(288.0f, 288.0f, 0.0f));
 
 		shader_.setUniform("projection", projection_);
 		shader_.setUniform("view", view);
 		shader_.setUniform("model", model);
 
-		//line_.draw(shader_);
-		world_.draw(shader_);
+		spriteLoader_.bindSpriteSheet();
+		quad_.renderer()->draw(shader_);
 
 		window_.SwapBuffer();
 	}

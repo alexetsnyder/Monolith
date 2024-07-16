@@ -113,7 +113,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;SDL2_ttf.lib;SDL2_image.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,7 +141,8 @@
     <ClCompile Include="Rendering\MeshRenderer.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
     <ClCompile Include="Rendering\Shapes\Quad.cpp" />
-    <ClCompile Include="Rendering\Sprite.cpp" />
+    <ClCompile Include="Rendering\Sprites\Sprite.cpp" />
+    <ClCompile Include="Rendering\Sprites\SpriteLoader.cpp" />
     <ClCompile Include="Rendering\Texture.cpp" />
     <ClCompile Include="Rendering\Text\Font.cpp" />
     <ClCompile Include="Rendering\Text\GlyphAtlas.cpp" />
@@ -157,7 +158,8 @@
     <ClInclude Include="Rendering\MeshRenderer.h" />
     <ClInclude Include="Rendering\Shader.h" />
     <ClInclude Include="Rendering\Shapes\Quad.h" />
-    <ClInclude Include="Rendering\Sprite.h" />
+    <ClInclude Include="Rendering\Sprites\Sprite.h" />
+    <ClInclude Include="Rendering\Sprites\SpriteLoader.h" />
     <ClInclude Include="Rendering\Texture.h" />
     <ClInclude Include="Rendering\Text\Font.h" />
     <ClInclude Include="Rendering\Text\GlyphAtlas.h" />
@@ -178,6 +180,11 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\Fonts\Px437_IBM_VGA_8x14.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <CopyFileToFolders Include="..\third_party\dlls\SDL2_image.dll">
+      <FileType>Document</FileType>
+    </CopyFileToFolders>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

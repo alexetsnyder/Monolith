@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Shapes/Quad.h"
-#include "Texture.h"
+#include "Rendering/Shapes/Quad.h"
+#include "Rendering/Texture.h"
 
 #include <glm/glm.hpp>
 

@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Rendering/Lines.h"
 #include "Rendering/Shader.h"
+#include "Rendering/Shapes/Quad.h"
+#include "Rendering/Sprites/SpriteLoader.h"
 #include "System/Windows/Window.h"
-#include "World/World.h";
 
 #include <string>
 
@@ -34,7 +34,7 @@ namespace Mono
 			Sys::Window window_;
 			glm::mat4 projection_;
 			Shader shader_;
-			World world_;
-			//Lines line_;
+			SpriteLoader spriteLoader_;
+			Quad quad_;
 	};
 }

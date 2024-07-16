@@ -57,7 +57,10 @@
     <ClCompile Include="World\World.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering\Sprite.cpp">
+    <ClCompile Include="Rendering\Sprites\Sprite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\Sprites\SpriteLoader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,13 +107,17 @@
     <ClInclude Include="World\World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rendering\Sprite.h">
+    <ClInclude Include="Rendering\Sprites\Sprite.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\Sprites\SpriteLoader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CopyFileToFolders Include="..\third_party\dlls\SDL2.dll" />
     <CopyFileToFolders Include="..\third_party\dlls\SDL2_ttf.dll" />
+    <CopyFileToFolders Include="..\third_party\dlls\SDL2_image.dll" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="Assets\Fonts\Px437_IBM_VGA_8x14.ttf" />
