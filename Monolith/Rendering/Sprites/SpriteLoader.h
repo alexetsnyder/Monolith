@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Rendering/Texture.h"
+#include "SpriteSheet.h"
 
 #include <glm/glm.hpp>
 
@@ -13,15 +13,13 @@ namespace Mono
 		public:
 			SpriteLoader(const std::string& spriteSheetFilePath, 
 				         const glm::vec2& spriteSheetSize, 
-				         const glm::vec2& tileSize);
+				         const glm::vec2& spriteSheetTileSize);
 			~SpriteLoader() {};
 			SpriteLoader(const SpriteLoader&) = delete;
 
 			void bindSpriteSheet();
 
 		private:
-			Texture spriteSheet_;
-			glm::vec2 size_;
-			glm::vec2 tileSize_;
+			SpriteSheet spriteSheet_;
 	};
 }
