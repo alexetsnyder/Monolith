@@ -2,9 +2,11 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
+#include <vector>
+
 namespace Mono
 {
-	float quadVertices[20]
+	float quadVertices[12]
 	{
 		 0.5f,  0.5f, 0.0f,  //top right
 		-0.5f,  0.5f, 0.0f,  //top left
@@ -18,11 +20,21 @@ namespace Mono
 		2, 1, 3,
 	};
 
-	Sprite::Sprite(const glm::vec3 position, const glm::vec2 size)
-		: position_{ position }, size_{ size }, meshRenderer_{},
-		  texture_{ static_cast<int>(size.x), static_cast<int>(size.y), TextureSettings{ GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR } }
+	std::vector<float> textureCoordinates
 	{
+		1.0f, 0.0f,
+		0.0f, 0.0f,	
+		1.0f, 1.0f,	
+		0.0f, 1.0f,
+	};
 
+	Sprite::Sprite(const SpriteSheet* spriteSheet, const glm::vec3 position, const glm::vec2 size)
+		: position_{ position }, size_{ size }, meshRenderer_{},
+		  spriteSheet_{ spriteSheet }
+	{
+		Mesh mesh{};
+		fillMesh(mesh);
+		meshRenderer_.sendData(mesh);
 	}
 
 	void Sprite::draw(const Shader& shader) const
@@ -32,17 +44,20 @@ namespace Mono
 		model = glm::scale(model, glm::vec3(size_.x, size_.y, 0.0f));
 		shader.setUniform("model", model);
 
-		texture_.bind();
+		spriteSheet_->bind();
 		meshRenderer_.draw(shader);
 	}
 
 	void Sprite::fillMesh(Mesh& mesh)
 	{
-		for (int v = 0; v < 20; v += 5)
+		std::vector<float> coordinates{ spriteSheet_->textureCoordinates(15, 1) };
+
+		for (int v = 0; v < 12; v += 3)
 		{
+			int coordIndex = 2 * (v / 3);
 			Vertex vertex{
 				{ quadVertices[v], quadVertices[v + 1], quadVertices[v + 2]},
-				{ 0.0f, 0.0f }
+				{ coordinates[coordIndex], coordinates[coordIndex + 1] }
 			};
 
 			mesh.addVertex(vertex);

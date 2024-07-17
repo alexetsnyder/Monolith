@@ -2,7 +2,7 @@
 
 #include "Geometry/Mesh.h"
 #include "Rendering/MeshRenderer.h"
-#include "Rendering/Texture.h"
+#include "SpriteSheet.h"
 
 #include <glm/glm.hpp>
 
@@ -11,7 +11,7 @@ namespace Mono
 	class Sprite
 	{
 		public:
-			Sprite(const glm::vec3 position, const glm::vec2 size);
+			Sprite(const SpriteSheet* spriteSheet, const glm::vec3 position, const glm::vec2 size);
 			~Sprite() {};
 			Sprite(const Sprite&) = delete;
 
@@ -23,6 +23,6 @@ namespace Mono
 			glm::vec3 position_;
 			glm::vec2 size_;
 			MeshRenderer meshRenderer_;
-			Texture texture_;
+			const SpriteSheet* spriteSheet_;
 	};
 }

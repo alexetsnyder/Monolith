@@ -5,6 +5,7 @@
 #include "glm/glm.hpp"
 
 #include <string>
+#include <vector>
 
 namespace Mono
 {
@@ -17,12 +18,16 @@ namespace Mono
 			~SpriteSheet() {};
 			SpriteSheet(const SpriteSheet&) = delete;
 
-			void bind();
+			std::vector<float> textureCoordinates(int i, int j) const;
+
+			void bind() const;
 
 		private:
 			Texture texture_;
 			glm::vec2 size_;
 			glm::vec2 tileSize_;
+			float normalizedXTileSize_;
+			float normalizedYTileSize_;
 	};
 
 }

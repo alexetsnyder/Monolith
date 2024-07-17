@@ -12,9 +12,9 @@ namespace Mono
 		: gameState_{ GameState::RUNNING },
 		  window_{ title.c_str(), windowWidth, windowHeight },
 		  projection_{ glm::ortho(0.0f, static_cast<float>(window_.width()), 0.0f, static_cast<float>(window_.height())) },
-		  spriteLoader_{ "Assets/Textures/Haowan_Curses_1440x450.png", glm::vec2(288.0f, 288.0f), glm::vec2(18.0f, 18.0f) },
-		  shader_{}, quad_{}
-		  //world_{ 528, 396 }, line_ {} 528, 396
+		  spriteSheet_{ "Assets/Textures/Haowan_Curses_1440x450.png", glm::vec2(288.0f, 288.0f), glm::vec2(18.0f, 18.0f) },
+		  sprite_{ &spriteSheet_, glm::vec3(500.0f, 300.0f, 0.0f), glm::vec2(30.0f, 30.0f) },
+		  shader_{}
 	{
 		createShader();
 	}
@@ -97,16 +97,11 @@ namespace Mono
 		glm::mat4 view{ 1.0f };
 		glm::mat4 model{ 1.0f };
 
-		//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
-		model = glm::translate(model, glm::vec3(512.0f, 384.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(288.0f, 288.0f, 0.0f));
-
 		shader_.setUniform("projection", projection_);
 		shader_.setUniform("view", view);
 		shader_.setUniform("model", model);
 
-		spriteLoader_.bindSpriteSheet();
-		quad_.renderer()->draw(shader_);
+		sprite_.draw(shader_);
 
 		window_.SwapBuffer();
 	}

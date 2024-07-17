@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Rendering/Shader.h"
-#include "Rendering/Shapes/Quad.h"
-#include "Rendering/Sprites/SpriteLoader.h"
+#include "Rendering/Sprites/Sprite.h"
+#include "Rendering/Sprites/SpriteSheet.h"
 #include "System/Windows/Window.h"
 
 #include <string>
@@ -34,7 +34,7 @@ namespace Mono
 			Sys::Window window_;
 			glm::mat4 projection_;
 			Shader shader_;
-			SpriteLoader spriteLoader_;
-			Quad quad_;
+			SpriteSheet spriteSheet_;
+			Sprite sprite_;
 	};
 }
