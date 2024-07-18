@@ -1,36 +1,64 @@
 #include "World.h"
 
+#include "Geometry/Quad.h"
+
+#include <glm/gtc/matrix_transform.hpp>
+
 namespace Mono
 {
-	World::World(int width, int height)
-		: tileFont_{ FontName::Px437_IBM_VGA_8x14, "Assets/Fonts/Px437_IBM_VGA_8x14.ttf", 24},
-		  mapTexture_{ width, height, TextureSettings{ GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE, GL_LINEAR, GL_LINEAR } },
-		  mapQuad_{}, width_{width}, height_{height}
+	World::World(const SpriteSheet* spriteSheet, const glm::vec2& size)
+		: spriteSheet_{ spriteSheet }, meshRenderer_{}, size_{ size }
 	{
 		createWorld();
 	}
 
+	void World::draw(const Shader& shader) const
+	{
+		glm::mat4 model{ 1.0f };
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(16.0f, 16.0f, 0.0f));
+		shader.setUniform("model", model);
+
+		spriteSheet_->bind();
+		meshRenderer_.draw(shader);
+	}
+
 	void World::createWorld()
 	{
-		SDL_Surface* mapSurface{ SDL_CreateRGBSurface(0, width_, height_, 32, 0, 0, 0, 0xff) };
-		SDL_SetColorKey(mapSurface, SDL_TRUE, SDL_MapRGBA(mapSurface->format, 0, 0, 0, 0));
-
-		for (int i = 0; i < height_; i+=8)
+		Mesh mesh{};
+		int vertexCount{ 0 };
+		for (int i = 0; i < size_.y; i++)
 		{
-			for (int j = 0; j < width_; j+=12)
+			for (int j = 0; j < size_.x; j++)
 			{
-				tileFont_.blitSurface('~', j, i, mapSurface);
+				glm::vec3 position{ static_cast<float>(j), static_cast<float>(i), 0.0f };
+				createTile(position, mesh, vertexCount);
 			}
 		}
 
-		mapTexture_.updateTexture(mapSurface);
-
-		SDL_FreeSurface(mapSurface);
+		meshRenderer_.sendData(mesh);
 	}
 
-	void World::draw(const Shader& shader) const
+	void World::createTile(const glm::vec3& position, Mesh& mesh, int& vertexCount)
 	{
-		mapTexture_.bind();
-		mapQuad_.renderer()->draw(shader);
+		std::vector<float> coordinates{ spriteSheet_->textureCoordinates(8, 14) };
+
+		for (int v = 0; v < 12; v += 3)
+		{
+			int coordIndex = 2 * (v / 3);
+			Vertex vertex{
+				{ position.x + quadVertices[v], position.y + quadVertices[v + 1], position.z + quadVertices[v + 2]},
+				{ coordinates[coordIndex], coordinates[coordIndex + 1] }
+			};
+
+			mesh.addVertex(vertex);
+		}
+
+		for (int i = 0; i < 6; i++)
+		{
+			mesh.addIndex(vertexCount + quadIndices[i]);
+		}
+
+		vertexCount += 4;
 	}
 }

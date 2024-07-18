@@ -1,33 +1,13 @@
 #include "Sprite.h"
 
+#include "Geometry/Quad.h"
+
 #include <glm/gtc/matrix_transform.hpp>
 
 #include <vector>
 
 namespace Mono
 {
-	float quadVertices[12]
-	{
-		 0.5f,  0.5f, 0.0f,  //top right
-		-0.5f,  0.5f, 0.0f,  //top left
-		 0.5f, -0.5f, 0.0f,  //bottom right
-		-0.5f, -0.5f, 0.0f,  //bottom left
-	};
-
-	int quadIndices[6]
-	{
-		0, 1, 2,
-		2, 1, 3,
-	};
-
-	std::vector<float> textureCoordinates
-	{
-		1.0f, 0.0f,
-		0.0f, 0.0f,	
-		1.0f, 1.0f,	
-		0.0f, 1.0f,
-	};
-
 	Sprite::Sprite(const SpriteSheet* spriteSheet, const glm::vec3 position, const glm::vec2 size)
 		: position_{ position }, size_{ size }, meshRenderer_{},
 		  spriteSheet_{ spriteSheet }
@@ -50,7 +30,7 @@ namespace Mono
 
 	void Sprite::fillMesh(Mesh& mesh)
 	{
-		std::vector<float> coordinates{ spriteSheet_->textureCoordinates(15, 1) };
+		std::vector<float> coordinates{ spriteSheet_->textureCoordinates(15, 1) }; //15, 1
 
 		for (int v = 0; v < 12; v += 3)
 		{

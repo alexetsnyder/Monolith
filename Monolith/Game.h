@@ -4,6 +4,7 @@
 #include "Rendering/Sprites/Sprite.h"
 #include "Rendering/Sprites/SpriteSheet.h"
 #include "System/Windows/Window.h"
+#include "World/World.h"
 
 #include <string>
 
@@ -36,5 +37,6 @@ namespace Mono
 			Shader shader_;
 			SpriteSheet spriteSheet_;
 			Sprite sprite_;
+			World world_;
 	};
 }

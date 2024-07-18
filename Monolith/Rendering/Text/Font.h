@@ -2,7 +2,6 @@
 
 #include "GlyphAtlas.h"
 #include "Rendering/Shader.h"
-#include "Rendering/Shapes/Quad.h"
 #include "Rendering/Texture.h"
 
 #include <string>

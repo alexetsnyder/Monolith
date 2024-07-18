@@ -135,12 +135,12 @@
   <ItemGroup>
     <ClCompile Include="..\third_party\cFiles\glad.c" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Geometry\Quad.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Rendering\Lines.cpp" />
     <ClCompile Include="Geometry\Mesh.cpp" />
     <ClCompile Include="Rendering\MeshRenderer.cpp" />
     <ClCompile Include="Rendering\Shader.cpp" />
-    <ClCompile Include="Rendering\Shapes\Quad.cpp" />
     <ClCompile Include="Rendering\Sprites\Sprite.cpp" />
     <ClCompile Include="Rendering\Sprites\SpriteLoader.cpp" />
     <ClCompile Include="Rendering\Sprites\SpriteSheet.cpp" />
@@ -153,12 +153,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Geometry\Quad.h" />
     <ClInclude Include="Rendering\IRenderer.h" />
     <ClInclude Include="Rendering\Lines.h" />
     <ClInclude Include="Geometry\Mesh.h" />
     <ClInclude Include="Rendering\MeshRenderer.h" />
     <ClInclude Include="Rendering\Shader.h" />
-    <ClInclude Include="Rendering\Shapes\Quad.h" />
     <ClInclude Include="Rendering\Sprites\Sprite.h" />
     <ClInclude Include="Rendering\Sprites\SpriteLoader.h" />
     <ClInclude Include="Rendering\Sprites\SpriteSheet.h" />
