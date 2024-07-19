@@ -13,8 +13,8 @@ namespace Mono
 		  window_{ title.c_str(), windowWidth, windowHeight },
 		  projection_{ glm::ortho(0.0f, static_cast<float>(window_.width()), 0.0f, static_cast<float>(window_.height())) },
 		  spriteSheet_{ "Assets/Textures/Haowan_Curses_1440x450.png", glm::vec2(288.0f, 288.0f), glm::vec2(18.0f, 18.0f) },
-		  sprite_{ &spriteSheet_, glm::vec3(500.0f, 300.0f, 0.0f), glm::vec2(30.0f, 30.0f) },
-		  world_{ &spriteSheet_, glm::vec2(64.0f, 64.0f) },
+		  sprite_{ &spriteSheet_, glm::vec3(500.0f, 300.0f, 0.0f), glm::vec2(16.0f, 16.0f) },
+		  world_{ &spriteSheet_, glm::vec2(64.0f, 64.0f), glm::vec2(16.0f, 16.0f) },
 		  shader_{}
 	{
 		createShader();

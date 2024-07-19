@@ -24,6 +24,8 @@ namespace Mono
 		model = glm::scale(model, glm::vec3(size_.x, size_.y, 0.0f));
 		shader.setUniform("model", model);
 
+		shader.setUniform("color", glm::vec3(1.0f, 0.0f, 0.0f));
+
 		spriteSheet_->bind();
 		meshRenderer_.draw(shader);
 	}

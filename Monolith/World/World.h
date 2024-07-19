@@ -12,7 +12,7 @@ namespace Mono
 	class World
 	{
 		public:
-			World(const SpriteSheet* spriteSheet, const glm::vec2& size);
+			World(const SpriteSheet* spriteSheet, const glm::vec2& size, const glm::vec2& tileSize);
 			~World() {};
 			World(const World&) = delete;
 
@@ -25,5 +25,6 @@ namespace Mono
 			const SpriteSheet* spriteSheet_;
 			MeshRenderer meshRenderer_;
 			glm::vec2 size_;
+			glm::vec2 tileSize_;
 	};
 }

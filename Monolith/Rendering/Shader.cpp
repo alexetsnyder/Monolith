@@ -116,6 +116,12 @@ namespace Mono
 		glUniformMatrix4fv(mat4Loc, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
+	void Shader::setUniform(const std::string& name, const glm::vec3& vector) const
+	{
+		GLuint vectorLoc = glGetUniformLocation(programID_, name.c_str());
+		glUniform3f(vectorLoc, vector.x, vector.y, vector.z);
+	}
+
 	std::string Shader::readFile(const std::string& filePath)
 	{
 		std::string fileStr = "";

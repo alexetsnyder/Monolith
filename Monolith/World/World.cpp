@@ -6,8 +6,8 @@
 
 namespace Mono
 {
-	World::World(const SpriteSheet* spriteSheet, const glm::vec2& size)
-		: spriteSheet_{ spriteSheet }, meshRenderer_{}, size_{ size }
+	World::World(const SpriteSheet* spriteSheet, const glm::vec2& size, const glm::vec2& tileSize)
+		: spriteSheet_{ spriteSheet }, meshRenderer_{}, size_{ size }, tileSize_{ tileSize }
 	{
 		createWorld();
 	}
@@ -15,9 +15,11 @@ namespace Mono
 	void World::draw(const Shader& shader) const
 	{
 		glm::mat4 model{ 1.0f };
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(16.0f, 16.0f, 0.0f));
+		model = glm::translate(model, glm::vec3(6.0f, 6.0f, 0.0f));
+		model = glm::scale(model, glm::vec3(tileSize_.x, tileSize_.y, 0.0f));
 		shader.setUniform("model", model);
+
+		shader.setUniform("color", glm::vec3(0.0f, 0.0f, 1.0f));
 
 		spriteSheet_->bind();
 		meshRenderer_.draw(shader);
