@@ -2,6 +2,7 @@
 
 #include "System/Exceptions/InitException.h"
 #include "System/Logging/ErrorLog.h"
+#include "System/Time.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -74,11 +75,24 @@ namespace Mono
 
 	void Game::loop()
 	{
+		constexpr int maxUpdates{ 20 };
+
+		double lag{ 0.0 };
+
+		Sys::Time::start();
 		while (gameState_ != GameState::EXIT)
 		{
+			Sys::Time::update();
+			lag += Sys::Time::deltaTime();
+
 			pollEvents();
 
-			update();
+			int updateCount{ 0 };
+			while (lag >= Sys::Time::fixedDeltaTime() && updateCount++ < maxUpdates)
+			{
+				update();
+				lag -= Sys::Time::fixedDeltaTime();
+			}
 
 			render();
 		}
