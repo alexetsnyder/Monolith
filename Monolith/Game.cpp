@@ -110,11 +110,9 @@ namespace Mono
 		shader_.use();
 
 		glm::mat4 view{ 1.0f };
-		glm::mat4 model{ 1.0f };
 
 		shader_.setUniform("projection", projection_);
 		shader_.setUniform("view", view);
-		shader_.setUniform("model", model);
 
 		world_.draw(shader_);
 		sprite_.draw(shader_);

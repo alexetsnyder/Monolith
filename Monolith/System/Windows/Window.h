@@ -21,7 +21,6 @@ namespace Mono::Sys
 			void toggleFullScreen();
 
 		private:
-			void initSDL();
 			void createWindow(const char* title);
 			void setUpOpenGLContext();
 			void loadGLAD();

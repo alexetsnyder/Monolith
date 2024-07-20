@@ -4,15 +4,12 @@
 #include "System/Logging/ErrorLog.h"
 
 #include <glad/glad.h>
-#include <SDL/SDL_image.h>
-#include <SDL/SDL_ttf.h>
 
 namespace Mono::Sys
 {
 	Window::Window(const char* title, int width, int height)
 		: isFullScreen_{ false }, width_{ width }, height_{ height }
 	{
-		initSDL();
 		createWindow(title);
 		setUpOpenGLContext();
 		loadGLAD();
@@ -70,30 +67,6 @@ namespace Mono::Sys
 		}
 	}
 
-	void Window::initSDL()
-	{
-		if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
-		{
-			ErrorLog::log("SDL_Init(SDL_INIT_EVERYTHIG)", SDL_GetError());
-			throw InitException("SDL_Init failed.");
-		}
-
-		if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG))
-		{
-			ErrorLog::log("IMG_Init(IMG_INIT_PNG)", SDL_GetError());
-			SDL_Quit();
-			throw InitException("IMG_Init failed.");
-		}
-
-		if (TTF_Init() < 0)
-		{
-			ErrorLog::log("TTF_Init()", SDL_GetError());
-			IMG_Quit();
-			SDL_Quit();
-			throw InitException("TTF_Init failed.");
-		}
-	}
-
 	void Window::createWindow(const char* title)
 	{
 		window_ = SDL_CreateWindow(title,
@@ -107,9 +80,6 @@ namespace Mono::Sys
 		if (window_ == nullptr)
 		{
 			ErrorLog::log("SDL_CreateWindow(...)", SDL_GetError());
-			TTF_Quit();
-			IMG_Quit();
-			SDL_Quit();
 			throw InitException("SDL_CreateWindow failed.");
 		}
 	}
@@ -157,8 +127,5 @@ namespace Mono::Sys
 	void Window::free()
 	{
 		SDL_DestroyWindow(window_);
-		TTF_Quit();
-		IMG_Quit();
-		SDL_Quit();
 	}
 }
